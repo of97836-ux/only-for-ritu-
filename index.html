@@ -1,32 +1,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bristy</title>
+    <title>Bristy 🌈</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
             font-family: Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(to right, #ffdde1, #ee9ca7);
-            color: white;
-            padding: 50px;
+            animation: bgMove 8s infinite alternate;
+            background: linear-gradient(45deg, #ff0080, #7928ca, #00c6ff, #ffcc00);
+            background-size: 400% 400%;
         }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
         .card {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            width: 300px;
-            margin: auto;
+            position: relative;
+            text-align: center;
+            color: white;
+            padding: 30px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            animation: zoom 2s infinite alternate;
+            z-index: 10;
         }
+
+        @keyframes zoom {
+            from { transform: scale(1) rotate(-2deg); }
+            to { transform: scale(1.08) rotate(2deg); }
+        }
+
         h1 {
-            font-size: 40px;
+            font-size: 50px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid white;
+            width: 0;
+            animation: typing 4s steps(12) infinite, glow 2s infinite alternate;
+        }
+
+        @keyframes typing {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px white; }
+            to { text-shadow: 0 0 25px #ff0, 0 0 40px #f0f; }
+        }
+
+        p {
+            margin-top: 15px;
+            font-size: 22px;
+            animation: shake 1.5s infinite;
+        }
+
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .heart, .star {
+            position: absolute;
+            font-size: 25px;
+            animation: fly 6s linear infinite;
+        }
+
+        .star {
+            color: yellow;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes fly {
+            from {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-20vh) scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(360deg) scale(1.5); }
         }
     </style>
 </head>
 <body>
+
     <div class="card">
         <h1>Bristy ❤️</h1>
-        <p>Beautiful, kind, and special.</p>
-        <p>Keep shining and smiling always ✨</p>
+        <p>You light up the world 🌟</p>
     </div>
+
+    <!-- Crazy floating stuff -->
+    <div class="heart" style="left:10%; animation-duration:4s;">❤️</div>
+    <div class="heart" style="left:25%; animation-duration:6s;">💖</div>
+    <div class="heart" style="left:70%; animation-duration:5s;">💕</div>
+    <div class="heart" style="left:85%; animation-duration:7s;">💘</div>
+
+    <div class="star" style="top:20%; left:15%;">⭐</div>
+    <div class="star" style="top:40%; left:80%;">✨</div>
+    <div class="star" style="top:70%; left:30%;">🌟</div>
+
 </body>
 </html>
