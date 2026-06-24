@@ -59,6 +59,25 @@
     <button class="btn" onclick="alert('Round 2 starts now 😆')">
         Start Fight
     </button>
+    <button class="btn" onclick="round2()">
+    Start Fight
+</button>
+
+<script>
+function round2() {
+    document.body.style.background = "darkred";
+    document.querySelector("h1").innerText = "🔥 ROUND 2: BRISTY WINS 🔥";
+
+    let blast = document.createElement("div");
+    blast.innerHTML = "💥💥💥";
+    blast.style.fontSize = "80px";
+    blast.style.position = "absolute";
+    blast.style.top = "40%";
+    blast.style.left = "35%";
+
+    document.body.appendChild(blast);
+}
+</script>
 
     <div class="blast" style="top:20%; left:20%;">💥</div>
     <div class="blast" style="top:50%; left:70%;">⚡</div>
