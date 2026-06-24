@@ -1,120 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bristy 🌈</title>
+    <title>Bristy ✨</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
+            margin: 0;
+            overflow: hidden;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
             font-family: Arial, sans-serif;
-            animation: bgMove 8s infinite alternate;
-            background: linear-gradient(45deg, #ff0080, #7928ca, #00c6ff, #ffcc00);
-            background-size: 400% 400%;
         }
 
-        @keyframes bgMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        .card {
+        .portal {
             position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 6px solid rgba(255,255,255,0.2);
+            animation: spin 10s linear infinite;
+            box-shadow: 0 0 50px #ff00ff, 0 0 100px #00ffff;
+        }
+
+        .ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px dashed rgba(255,255,255,0.5);
+            border-radius: 50%;
+            animation: spinReverse 8s linear infinite;
+        }
+
+        .name {
+            position: absolute;
+            width: 100%;
             text-align: center;
+            top: 40%;
+            font-size: 42px;
+            font-weight: bold;
             color: white;
-            padding: 30px;
-            border-radius: 25px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(15px);
-            animation: zoom 2s infinite alternate;
-            z-index: 10;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes zoom {
-            from { transform: scale(1) rotate(-2deg); }
-            to { transform: scale(1.08) rotate(2deg); }
-        }
-
-        h1 {
-            font-size: 50px;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid white;
-            width: 0;
-            animation: typing 4s steps(12) infinite, glow 2s infinite alternate;
-        }
-
-        @keyframes typing {
-            0% { width: 0; }
-            50% { width: 100%; }
-            100% { width: 0; }
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px white; }
-            to { text-shadow: 0 0 25px #ff0, 0 0 40px #f0f; }
-        }
-
-        p {
-            margin-top: 15px;
-            font-size: 22px;
-            animation: shake 1.5s infinite;
-        }
-
-        @keyframes shake {
-            0%,100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        .heart, .star {
+        .heart {
             position: absolute;
             font-size: 25px;
-            animation: fly 6s linear infinite;
+            animation: orbit 5s linear infinite;
         }
 
-        .star {
-            color: yellow;
-            animation: spin 4s linear infinite;
-        }
-
-        @keyframes fly {
-            from {
-                transform: translateY(100vh) scale(0.5);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-20vh) scale(2);
-                opacity: 0;
-            }
-        }
+        .heart:nth-child(1) { top: -10px; left: 50%; }
+        .heart:nth-child(2) { bottom: -10px; left: 50%; }
+        .heart:nth-child(3) { left: -10px; top: 50%; }
+        .heart:nth-child(4) { right: -10px; top: 50%; }
 
         @keyframes spin {
-            from { transform: rotate(0deg) scale(1); }
-            to { transform: rotate(360deg) scale(1.5); }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        @keyframes pulse {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        }
+
+        .spark {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.2; transform: scale(1); }
+            to { opacity: 1; transform: scale(2); }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Bristy ❤️</h1>
-        <p>You light up the world 🌟</p>
+    <div class="portal">
+        <div class="ring"></div>
+        <div class="name">Bristy 💫</div>
+
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💘</div>
     </div>
 
-    <!-- Crazy floating stuff -->
-    <div class="heart" style="left:10%; animation-duration:4s;">❤️</div>
-    <div class="heart" style="left:25%; animation-duration:6s;">💖</div>
-    <div class="heart" style="left:70%; animation-duration:5s;">💕</div>
-    <div class="heart" style="left:85%; animation-duration:7s;">💘</div>
-
-    <div class="star" style="top:20%; left:15%;">⭐</div>
-    <div class="star" style="top:40%; left:80%;">✨</div>
-    <div class="star" style="top:70%; left:30%;">🌟</div>
+    <!-- random sparkles -->
+    <div class="spark" style="top:20%; left:15%;"></div>
+    <div class="spark" style="top:70%; left:80%;"></div>
+    <div class="spark" style="top:40%; left:50%;"></div>
+    <div class="spark" style="top:85%; left:25%;"></div>
+    <div class="spark" style="top:10%; left:70%;"></div>
 
 </body>
 </html>
