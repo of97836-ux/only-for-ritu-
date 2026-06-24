@@ -1,114 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bristy ✨</title>
+    <title>Bristy vs Me ⚔️</title>
     <style>
         body {
             margin: 0;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
-            font-family: Arial, sans-serif;
-        }
-
-        .portal {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            border: 6px solid rgba(255,255,255,0.2);
-            animation: spin 10s linear infinite;
-            box-shadow: 0 0 50px #ff00ff, 0 0 100px #00ffff;
-        }
-
-        .ring {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 3px dashed rgba(255,255,255,0.5);
-            border-radius: 50%;
-            animation: spinReverse 8s linear infinite;
-        }
-
-        .name {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            top: 40%;
-            font-size: 42px;
-            font-weight: bold;
+            background: #111;
             color: white;
-            text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
-            animation: pulse 2s infinite;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            text-align: center;
         }
 
-        .heart {
+        h1 {
+            margin-top: 15%;
+            font-size: 55px;
+            animation: fight 1s infinite alternate;
+        }
+
+        p {
+            font-size: 24px;
+        }
+
+        .blast {
             position: absolute;
-            font-size: 25px;
-            animation: orbit 5s linear infinite;
+            font-size: 40px;
+            animation: explode 3s infinite;
         }
 
-        .heart:nth-child(1) { top: -10px; left: 50%; }
-        .heart:nth-child(2) { bottom: -10px; left: 50%; }
-        .heart:nth-child(3) { left: -10px; top: 50%; }
-        .heart:nth-child(4) { right: -10px; top: 50%; }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes fight {
+            from { transform: translateX(-20px); color: red; }
+            to { transform: translateX(20px); color: cyan; }
         }
 
-        @keyframes spinReverse {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
+        @keyframes explode {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(4) rotate(720deg); opacity: 0; }
         }
 
-        @keyframes pulse {
-            0%,100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        @keyframes orbit {
-            0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
-        }
-
-        .spark {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite alternate;
-        }
-
-        @keyframes twinkle {
-            from { opacity: 0.2; transform: scale(1); }
-            to { opacity: 1; transform: scale(2); }
+        .btn {
+            margin-top: 20px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            background: crimson;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="portal">
-        <div class="ring"></div>
-        <div class="name">Bristy 💫</div>
+    <h1>⚔️ Me vs Bristy ⚔️</h1>
+    <p>24/7 Clash Mode Activated 😈🔥</p>
+    <p>But still the best sister ever 😂💙</p>
 
-        <div class="heart">❤️</div>
-        <div class="heart">💖</div>
-        <div class="heart">💕</div>
-        <div class="heart">💘</div>
-    </div>
+    <button class="btn" onclick="alert('Round 2 starts now 😆')">
+        Start Fight
+    </button>
 
-    <!-- random sparkles -->
-    <div class="spark" style="top:20%; left:15%;"></div>
-    <div class="spark" style="top:70%; left:80%;"></div>
-    <div class="spark" style="top:40%; left:50%;"></div>
-    <div class="spark" style="top:85%; left:25%;"></div>
-    <div class="spark" style="top:10%; left:70%;"></div>
+    <div class="blast" style="top:20%; left:20%;">💥</div>
+    <div class="blast" style="top:50%; left:70%;">⚡</div>
+    <div class="blast" style="top:70%; left:40%;">🔥</div>
 
 </body>
 </html>
