@@ -1,87 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bristy vs Me ⚔️</title>
+    <title>Bristy Chaos Mode 🤯</title>
     <style>
         body {
             margin: 0;
-            background: #111;
+            overflow: hidden;
+            background: black;
             color: white;
             font-family: Arial, sans-serif;
-            overflow: hidden;
             text-align: center;
         }
 
         h1 {
-            margin-top: 15%;
-            font-size: 55px;
-            animation: fight 1s infinite alternate;
-        }
-
-        p {
-            font-size: 24px;
-        }
-
-        .blast {
             position: absolute;
-            font-size: 40px;
-            animation: explode 3s infinite;
-        }
-
-        @keyframes fight {
-            from { transform: translateX(-20px); color: red; }
-            to { transform: translateX(20px); color: cyan; }
-        }
-
-        @keyframes explode {
-            0% { transform: scale(0) rotate(0deg); opacity: 1; }
-            100% { transform: scale(4) rotate(720deg); opacity: 0; }
+            top: 40%;
+            left: 35%;
+            font-size: 60px;
+            transition: all 0.2s;
         }
 
         .btn {
-            margin-top: 20px;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 10px;
+            position: absolute;
+            bottom: 50px;
+            left: 40%;
+            padding: 20px 30px;
+            font-size: 20px;
             background: crimson;
+            border: none;
             color: white;
-            font-size: 18px;
+            border-radius: 10px;
             cursor: pointer;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 35px;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            from { transform: translateY(-100px) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(720deg); }
+        }
+
+        .shake {
+            animation: shake 0.1s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(5px, 5px); }
+            25% { transform: translate(-5px, -5px); }
+            50% { transform: translate(5px, -5px); }
+            75% { transform: translate(-5px, 5px); }
+            100% { transform: translate(5px, 5px); }
         }
     </style>
 </head>
 <body>
 
-    <h1>⚔️ Me vs Bristy ⚔️</h1>
-    <p>24/7 Clash Mode Activated 😈🔥</p>
-    <p>But still the best sister ever 😂💙</p>
+    <h1 id="name">👑 BRISTY 👑</h1>
+    <button class="btn" onclick="chaosMode()">ENTER CHAOS</button>
 
-    <button class="btn" onclick="alert('Round 2 starts now 😆')">
-        Start Fight
-    </button>
-    <button class="btn" onclick="round2()">
-    Start Fight
-</button>
+    <script>
+        function chaosMode() {
+            document.body.classList.add("shake");
 
-<script>
-function round2() {
-    document.body.style.background = "darkred";
-    document.querySelector("h1").innerText = "🔥 ROUND 2: BRISTY WINS 🔥";
+            // Flash colors
+            setInterval(() => {
+                document.body.style.background =
+                    "#" + Math.floor(Math.random()*16777215).toString(16);
+            }, 200);
 
-    let blast = document.createElement("div");
-    blast.innerHTML = "💥💥💥";
-    blast.style.fontSize = "80px";
-    blast.style.position = "absolute";
-    blast.style.top = "40%";
-    blast.style.left = "35%";
+            // Teleport name
+            setInterval(() => {
+                let name = document.getElementById("name");
+                name.style.top = Math.random() * 80 + "%";
+                name.style.left = Math.random() * 80 + "%";
+            }, 300);
 
-    document.body.appendChild(blast);
-}
-</script>
+            // Emoji rain
+            let emojis = ["😂","🔥","💥","⚡","🤯","😈","🎉"];
+            setInterval(() => {
+                let e = document.createElement("div");
+                e.className = "emoji";
+                e.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+                e.style.left = Math.random() * 100 + "%";
+                document.body.appendChild(e);
 
-    <div class="blast" style="top:20%; left:20%;">💥</div>
-    <div class="blast" style="top:50%; left:70%;">⚡</div>
-    <div class="blast" style="top:70%; left:40%;">🔥</div>
+                setTimeout(() => e.remove(), 3000);
+            }, 200);
+        }
+    </script>
 
 </body>
 </html>
