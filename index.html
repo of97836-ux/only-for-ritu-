@@ -1,7 +1,8 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bristy Chaos Mode 🤯</title>
+    <title>Bristy Ultimate Chaos 🤯</title>
     <style>
         body {
             margin: 0;
@@ -12,18 +13,17 @@
             text-align: center;
         }
 
-        h1 {
+        #name {
             position: absolute;
-            top: 40%;
-            left: 35%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-size: 60px;
             transition: all 0.2s;
         }
 
         .btn {
             position: absolute;
-            bottom: 50px;
-            left: 40%;
             padding: 20px 30px;
             font-size: 20px;
             background: crimson;
@@ -33,10 +33,57 @@
             cursor: pointer;
         }
 
-        .emoji {
+        #chaosBtn {
+            bottom: 50px;
+            left: 40%;
+        }
+
+        #escapeBtn {
+            top: 20%;
+            left: 20%;
+            background: purple;
+        }
+
+        .emoji, .message, .confetti {
             position: absolute;
             font-size: 35px;
+            pointer-events: none;
+        }
+
+        .emoji {
             animation: fall 3s linear infinite;
+        }
+
+        .confetti {
+            animation: explode 2s linear forwards;
+        }
+
+        .shake {
+            animation: shake 0.1s infinite;
+        }
+
+        #loader {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 30px;
+            border: 2px solid white;
+        }
+
+        #bar {
+            width: 0%;
+            height: 100%;
+            background: lime;
+        }
+
+        #countdown {
+            position: absolute;
+            bottom: 120px;
+            left: 40%;
+            font-size: 40px;
+            display: none;
         }
 
         @keyframes fall {
@@ -44,8 +91,9 @@
             to { transform: translateY(100vh) rotate(720deg); }
         }
 
-        .shake {
-            animation: shake 0.1s infinite;
+        @keyframes explode {
+            from { transform: scale(0); opacity: 1; }
+            to { transform: scale(3); opacity: 0; }
         }
 
         @keyframes shake {
@@ -59,17 +107,48 @@
 </head>
 <body>
 
+    <div id="loader"><div id="bar"></div></div>
     <h1 id="name">👑 BRISTY 👑</h1>
-    <button class="btn" onclick="chaosMode()">ENTER CHAOS</button>
+
+    <button class="btn" id="chaosBtn" onclick="chaosMode()">ENTER CHAOS</button>
+    <button class="btn" id="escapeBtn">Catch Me 😈</button>
+
+    <div id="countdown"></div>
 
     <script>
+        let started = false;
+
+        // Fake loading bar
+        let width = 0;
+        let load = setInterval(() => {
+            width += 2;
+            document.getElementById("bar").style.width = width + "%";
+            if (width >= 100) {
+                clearInterval(load);
+                document.getElementById("loader").style.display = "none";
+            }
+        }, 50);
+
+        // Runaway button
+        const escapeBtn = document.getElementById("escapeBtn");
+        escapeBtn.addEventListener("mouseover", () => {
+            escapeBtn.style.left = Math.random() * 80 + "%";
+            escapeBtn.style.top = Math.random() * 80 + "%";
+        });
+
         function chaosMode() {
+            if (started) return;
+            started = true;
+
             document.body.classList.add("shake");
+            document.getElementById("chaosBtn").style.display = "none";
 
             // Flash colors
             setInterval(() => {
                 document.body.style.background =
-                    "#" + Math.floor(Math.random()*16777215).toString(16);
+                    "#" + Math.floor(Math.random() * 16777215)
+                    .toString(16)
+                    .padStart(6, "0");
             }, 200);
 
             // Teleport name
@@ -84,14 +163,61 @@
             setInterval(() => {
                 let e = document.createElement("div");
                 e.className = "emoji";
-                e.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+                e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 e.style.left = Math.random() * 100 + "%";
                 document.body.appendChild(e);
 
                 setTimeout(() => e.remove(), 3000);
             }, 200);
+
+            // Random messages
+            const messages = [
+                "⚠ Chaos level rising...",
+                "🤯 Too late to escape!",
+                "😂 Bristy.exe stopped working!",
+                "💥 Meme overload detected!"
+            ];
+
+            setInterval(() => {
+                let msg = document.createElement("div");
+                msg.className = "message";
+                msg.innerText = messages[Math.floor(Math.random() * messages.length)];
+                msg.style.left = Math.random() * 80 + "%";
+                msg.style.top = Math.random() * 80 + "%";
+                document.body.appendChild(msg);
+
+                setTimeout(() => msg.remove(), 2000);
+            }, 1000);
+
+            // Fake self-destruct countdown
+            let count = 5;
+            let countdown = document.getElementById("countdown");
+            countdown.style.display = "block";
+
+            let timer = setInterval(() => {
+                countdown.innerText = "💣 SELF DESTRUCT IN " + count;
+                count--;
+
+                if (count < 0) {
+                    clearInterval(timer);
+                    countdown.innerText = "🎉 GOTCHA!";
+
+                    // Confetti explosion
+                    for (let i = 0; i < 30; i++) {
+                        let c = document.createElement("div");
+                        c.className = "confetti";
+                        c.innerText = "🎊";
+                        c.style.left = Math.random() * 100 + "%";
+                        c.style.top = Math.random() * 100 + "%";
+                        document.body.appendChild(c);
+
+                        setTimeout(() => c.remove(), 2000);
+                    }
+                }
+            }, 1000);
         }
     </script>
 
 </body>
 </html>
+```
